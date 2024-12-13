@@ -1,0 +1,33 @@
+ingress:
+  enabled: true
+  hosts:
+    - name: sonar.mintos.com
+      path: /
+      pathType: Prefix
+
+# Use external postgresql
+postgresql:
+  enabled: false
+  existingSecret: postgresql
+  existingSecretPasswordKey: postgres-password
+  secretKey: postgres-password
+
+# Do not create secret in SonarQube chart, postgresql one will be used
+createPostgresqlSecret: false
+
+# Environment variables for SonarQube to use
+env:
+  - name: POSTGRES_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: postgresql  # The name of your secret
+        key: postgres-password  # The key in the secret that holds the password
+
+persistence:
+  enabled: true
+
+extraConfig:
+  secrets:
+    - postgresql
+  configmaps:
+    - external-sonarqube-opts
