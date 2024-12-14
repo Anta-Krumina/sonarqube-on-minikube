@@ -20,7 +20,7 @@ env:
   - name: POSTGRES_PASSWORD
     valueFrom:
       secretKeyRef:
-        name: postgresql  # The name of your secret
+        name: postgresql  # The name of PostgreSQL created secret
         key: postgres-password  # The key in the secret that holds the password
 
 persistence:

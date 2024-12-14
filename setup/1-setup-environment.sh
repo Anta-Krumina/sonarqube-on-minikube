@@ -6,15 +6,18 @@ echo "Starting Minikube..."
 minikube start --memory=4g --cpus=2 --driver=docker
 # 1.1. Set alias for minikube kubectl
 alias kubectl="minikube kubectl --"
+echo "==============================================================================================="
 
 # 2. Enable ingress addon Minikube plugin
 echo "Enabling Ingress on Minikube..."
 minikube addons enable ingress
+echo "==============================================================================================="
 
 # 3. Set up Helm
 echo "Setting up Helm repositories..."
 helm repo add bitnami https://charts.bitnami.com/bitnami
 helm repo add oteemocharts https://oteemo.github.io/charts
-helm repo update
+helm repo update bitnami oteemocharts
 
+echo "==============================================================================================="
 echo "✅ Environment setup complete!"

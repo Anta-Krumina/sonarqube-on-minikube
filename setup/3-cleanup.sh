@@ -24,3 +24,7 @@ else
 fi
 
 echo "✅ Cleanup completed."
+
+# Remove added Helm repositories
+echo "Remove added helm repositories..."
+helm repo remove bitnami oteemocharts
