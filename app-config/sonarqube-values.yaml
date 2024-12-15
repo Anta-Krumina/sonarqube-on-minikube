@@ -15,14 +15,6 @@ postgresql:
 # Do not create secret in SonarQube chart, postgresql one will be used
 createPostgresqlSecret: false
 
-# Environment variables for SonarQube to use
-env:
-  - name: POSTGRES_PASSWORD
-    valueFrom:
-      secretKeyRef:
-        name: postgresql  # The name of PostgreSQL created secret
-        key: postgres-password  # The key in the secret that holds the password
-
 persistence:
   enabled: true
 

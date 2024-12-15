@@ -57,4 +57,22 @@ cd sonarqube-on-minikube
 ```
 
 ### Troubleshoot
-If provisioning fails on first attempt, re-run provision-sonarqube script again.
+If provisioning fails when creating first resource postgresql on the first attempt, then run troublshoot-fix script
+```bash
+./setup/troubleshoot-fix.sh
+```
+
+**Alterantively** run following commands in the cluster:
+1. Destroy terraform resources
+```bash
+terraform destroy
+```
+2. remove postgreql pvc in order to have new password on new run
+```bash
+kubectl delete pvc --all 
+kubectl delete pv --all
+```
+3. re-run provision-sonarqube script again.
+```bash
+./setup/2-provision-sonarqube-postgresql.sh
+```
